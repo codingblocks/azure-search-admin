@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ReactJson from 'react-json-view'
 
 class LogList extends Component {
   constructor (props) {
@@ -36,7 +37,7 @@ class LogList extends Component {
         Duration: {this.dateDiff(search.requestDate, search.responseDate)}<br/>
         <span className='small' onClick={this.toggleResponse}>{this.state.responseToggleText}</span>
         <div hidden={this.state.hideResponse}>
-          {search.response}
+          <ReactJson src={JSON.parse(search.response)} />
         </div>
       </div>
     )
