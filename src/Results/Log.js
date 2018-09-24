@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 
 class Log extends Component {
-
-  render() {
+  render () {
     return (
       <div>
         <h3>Logs</h3>
@@ -14,7 +13,6 @@ class Log extends Component {
       </div>
     )
   }
-
 }
 
 export default Log

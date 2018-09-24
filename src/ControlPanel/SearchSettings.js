@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class SearchSettings extends Component {
-  render() {
+  render () {
     return (
       <div>
         <p>TODO</p>
