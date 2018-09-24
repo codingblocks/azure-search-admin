@@ -28,7 +28,7 @@ class Results extends Component {
         <h3>Search</h3>
         <p>
           Base Search Url:<br/>
-          <span class="small">Note: API Key is a required header, you can't simply hit this url in a browser</span><br/>
+          <span className="small">Note: API Key is a required header, you can't simply hit this url in a browser</span><br/>
           <code>{baseSearchUrl}</code>
         </p>
         <p>Query API Key:<br/><code>{apiKey}</code></p>
