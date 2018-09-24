@@ -24,20 +24,21 @@ class LogList extends Component {
     if (!date2) {
       return 'n/a'
     }
-    return (date1.getTime() - date2.getTime()).toString() + ' ms'
+    return (date2.getTime() - date1.getTime()).toString() + ' ms'
   }
 
   render () {
     const search = this.state.search
+    console.log(search)
     return (
       <div>
-        {search.method} {search.requestUrl}<br />
-        {search.statusCode} {search.statusMessage}<br />
-        Request Date: {search.requestDate.toString()}<br />
-        Duration: {this.dateDiff(search.requestDate, search.responseDate)}<br/>
+        Url: {search.request.config.method} {search.request.url}<br />
+        Status: {search.response.status} {search.response.statusText}<br />
+        Request Date: {search.request.date.toString()}<br />
+        Duration: {this.dateDiff(search.request.date, search.response.date)}<br />
         <span className='small' onClick={this.toggleResponse}>{this.state.responseToggleText}</span>
         <div hidden={this.state.hideResponse}>
-          <ReactJson src={JSON.parse(search.response)} />
+          <ReactJson src={JSON.parse(search.response.responseText)} />
         </div>
       </div>
     )
