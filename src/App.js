@@ -21,7 +21,7 @@ class App extends Component {
         <header>
           <h1>Azure Search Admin</h1>
         </header>
-        <div className="container-fluid">
+        <div className="container">
           <div className="row">
             <div className="col-xs">
               <ControlPanel onUpdate={(searchConfig) => this.updateConfig(searchConfig)} />

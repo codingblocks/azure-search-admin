@@ -3,18 +3,18 @@ import React, { Component } from 'react';
 class SearchSettings extends Component {
   render() {
     return (
-      <form>
+      <div>
         <p>TODO</p>
         <ul>
-          <ul>search text</ul>
-          <ul>highlighting</ul>
-          <ul>profiles</ul>
-          <ul>fuzzy</ul>
-          <ul>profiles</ul>
-          <ul>maxresults</ul>
-          <ul>paging</ul>
+          <li>search text</li>
+          <li>highlighting</li>
+          <li>profiles</li>
+          <li>fuzzy</li>
+          <li>profiles</li>
+          <li>maxresults</li>
+          <li>paging</li>
         </ul>
-      </form>
+      </div>
     )
   }
 }

@@ -32,7 +32,7 @@ class ControlPanel extends Component {
   render() {
     return (
       <div id="accordian">
-
+        <h3>Control Panel</h3>
         <div className="card">
           <div className="card-header" id="endpoint-configuration-header">
             <h5 className="mb-0">

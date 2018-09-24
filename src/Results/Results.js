@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Log from './Log'
 
 class Results extends Component {
 
@@ -24,10 +25,16 @@ class Results extends Component {
     const curlCommand = configured ? config.derivedProperties.curlCommand : 'Endpoint Configuration Required'
     return (
       <div>
-        <p>Base Search Url: {baseSearchUrl}</p>
-        <p>Query API Key: {apiKey}</p>
-        <p>Sample CURL command: {curlCommand}</p>
+        <h3>Search</h3>
+        <p>
+          Base Search Url:<br/>
+          <span class="small">Note: API Key is a required header, you can't simply hit this url in a browser</span><br/>
+          <code>{baseSearchUrl}</code>
+        </p>
+        <p>Query API Key:<br/><code>{apiKey}</code></p>
+        <p>Sample CURL command:<br/><code>{curlCommand}</code></p>
         <button type="button" className="btn btn-primary" disabled={!configured} onClick={this.testConfiguration}>Test</button>
+        <Log />
       </div>
     )
   }
