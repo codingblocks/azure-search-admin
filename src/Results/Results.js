@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Log from './Log'
+import LogList from './LogList'
 
 class Results extends Component {
   testConfiguration () {
@@ -33,7 +33,7 @@ class Results extends Component {
         <p>Query API Key:<br /><code>{apiKey}</code></p>
         <p>Sample CURL command:<br /><code>{curlCommand}</code></p>
         <button type='button' className='btn btn-primary' disabled={!configured} onClick={this.testConfiguration}>Test</button>
-        <Log />
+        <LogList />
       </div>
     )
   }
