@@ -6,21 +6,12 @@ class ControlPanel extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      endpointConfig: null,
-      derivedProperties: null
+      endpointConfig: this.props.searchConfig ? this.props.searchConfig.endpointConfig : null
     }
   }
 
   updateEndpointSettings (endpointConfig) {
-    // TODO ought move this to a logic class somewhere
-    const baseSearchUrl = `${endpointConfig.portalEndpoint}/indexes/${endpointConfig.searchIndex}/docs?api-version=${endpointConfig.apiVersion}`
-    this.setState({
-      endpointConfig: endpointConfig,
-      derivedProperties: {
-        baseSearchUrl: baseSearchUrl,
-        curlCommand: `curl -i -H "Accept: application/json" -H "Content-Type: application/json" -H "api-key: ${endpointConfig.apiKey}" -X GET ${baseSearchUrl}`
-      }
-    }, this.fireUpdate)
+    this.setState({ endpointConfig: endpointConfig }, this.fireUpdate)
   }
 
   fireUpdate () {
@@ -37,13 +28,13 @@ class ControlPanel extends Component {
           <div className='card-header' id='endpoint-configuration-header'>
             <h5 className='mb-0'>
               <button className='btn btn-link' data-toggle='collapse' data-target='#collapse1' aria-expanded='true' aria-controls='collapse1'>
-                Endpoint Configuration
+                <span hidden={!this.state.endpointConfig}>✓ </span>Endpoint Configuration
               </button>
             </h5>
           </div>
           <div id='collapse1' className='collapse' aria-labelledby='endpoint-configuration-header' data-parent='#accordion'>
             <div className='card-body'>
-              <EndpointSettings onUpdate={(endpointConfig) => this.updateEndpointSettings(endpointConfig)} />
+              <EndpointSettings endpointConfig={this.state.endpointConfig} onUpdate={(endpointConfig) => this.updateEndpointSettings(endpointConfig)} />
             </div>
           </div>
         </div>

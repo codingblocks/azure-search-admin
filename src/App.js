@@ -5,7 +5,6 @@ import Results from './Results/Results.js'
 class App extends Component {
   constructor (props) {
     super(props)
-    debugger
     const serializedSearchConfig = window.localStorage.getItem('searchConfig')
     const searchConfig = serializedSearchConfig ? JSON.parse(serializedSearchConfig) : null
     this.state = {
@@ -27,10 +26,10 @@ class App extends Component {
         <header>
           <h1>Azure Search Admin</h1>
         </header>
-        <div className='container'>
+        <div className='container-fluid'>
           <div className='row'>
             <div className='col-xs'>
-              <ControlPanel onUpdate={(searchConfig) => this.updateConfig(searchConfig)} />
+              <ControlPanel searchConfig={this.state.searchConfig} onUpdate={(searchConfig) => this.updateConfig(searchConfig)} />
             </div>
             <div className='col-lg'>
               <Results searchConfig={this.state.searchConfig} />

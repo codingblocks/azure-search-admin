@@ -29,7 +29,6 @@ class LogList extends Component {
 
   render () {
     const search = this.state.search
-    console.log(search)
     return (
       <div>
         Url: {search.request.config.method} {search.request.url}<br />
