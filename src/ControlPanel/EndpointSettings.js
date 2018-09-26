@@ -41,6 +41,11 @@ class EndpointSettings extends Component {
           <small id='searchIndexHelp' className='form-text text-muted'>Name of the search index, because one endpoint can service more than one index</small>
         </div>
         <div className='form-group'>
+          <label htmlFor='apiKey'>Query Key</label>
+          <input id='apiKey' defaultValue={endpointConfig.apiKey} className='form-control' type='text' pattern='[A-Z0-9]{32}' aria-describedby='apiKeyHelp' placeholder='Sample: 18EA821D408444FCF3DC3EC4F3790FEC' required />
+          <small id='apiKeyHelp' className='form-text text-muted'>Enter the API Key to use for searching, do *not* enter an admin key</small>
+        </div>
+        <div className='form-group'>
           <label htmlFor='apiVersion'>Azure Search API Version</label>
           <select id='apiVersion' defaultValue={endpointConfig.apiVersion} className='form-control' aria-describedby='apiVersionHelp' required>
             <option>2017-11-11-Preview</option>
@@ -48,11 +53,6 @@ class EndpointSettings extends Component {
             <option>2016-09-01</option>
           </select>
           <small id='apiVersionHelp' className='form-text text-muted'>Which API Version to use, more details here: <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/' title='More information on Azure Search REST API versions'>https://docs.microsoft.com/en-us/rest/api/searchservice/</a></small>
-        </div>
-        <div className='form-group'>
-          <label htmlFor='apiKey'>Query Key</label>
-          <input id='apiKey' defaultValue={endpointConfig.apiKey} className='form-control' type='text' pattern='[A-Z0-9]{32}' aria-describedby='apiKeyHelp' placeholder='Sample: 18EA821D408444FCF3DC3EC4F3790FEC' required />
-          <small id='apiKeyHelp' className='form-text text-muted'>Enter the API Key to use for searching, do *not* enter an admin key</small>
         </div>
         <button type='submit' className='btn btn-primary'>Save Endpoint Configuration</button>
       </form>
