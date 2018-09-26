@@ -5,40 +5,30 @@ import SearchRequest from '../Models/SearchRequest.js'
 class Results extends Component {
   constructor (props) {
     super(props)
-    if (this.props.searchConfig && this.props.searchConfig.endpointConfig) {
-      this.request = new SearchRequest(this.props.searchConfig.endpointConfig)
-    }
     this.state = {
-      configured: !!this.request,
       completedRequests: [],
       testing: false
     }
     this.testConfiguration = this.testConfiguration.bind(this)
   }
 
-  componentDidUpdate () {
-    if (!this.request) {
-      if (this.props.searchConfig.endpointConfig) {
-        this.request = new SearchRequest(this.props.searchConfig.endpointConfig)
-        this.setState({ configured: !!this.request })
-      }
-    }
-  }
-
   testConfiguration () {
     let self = this
     this.setState({ testing: true }, () => {
-      this.request.issue({ method: 'GET' }, (request) => {
-        const completedRequests = [...self.state.completedRequests, request]
+      let request = new SearchRequest(this.props.searchConfig.endpointConfig)
+      request.issue({ method: 'GET' }, (r) => {
+        const completedRequests = [...self.state.completedRequests, r]
         self.setState({ testing: false, completedRequests: completedRequests })
       })
     })
   }
 
   render () {
-    const configured = this.state.configured
+    const configured = this.props.searchConfig && this.props.searchConfig.endpointConfig
     const testingEnabled = configured && !this.state.testing
-    const config = configured && this.request.getConfig()
+
+    const request = configured && new SearchRequest(this.props.searchConfig.endpointConfig)
+    const config = configured && request.getConfig()
     const baseSearchUrl = configured ? config.derivedProperties.baseSearchUrl : 'Endpoint Configuration Required'
     const apiKey = configured ? config.endpointConfig.apiKey : 'Endpoint Configuration Required'
     const curlCommand = configured ? config.derivedProperties.baseCurlCommand : 'Endpoint Configuration Required'

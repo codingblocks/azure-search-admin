@@ -1,8 +1,9 @@
 class SearchRequest {
   constructor (endpointConfig) {
+    this.clone = o => JSON.parse(JSON.stringify(o))
     const baseSearchUrl = `${endpointConfig.portalEndpoint}/indexes/${endpointConfig.searchIndex}/docs?api-version=${endpointConfig.apiVersion}`
     this.config = {
-      endpointConfig: endpointConfig,
+      endpointConfig: this.clone(endpointConfig),
       derivedProperties: {
         baseSearchUrl: baseSearchUrl,
         baseCurlCommand: `curl -i -H "Accept: application/json" -H "Content-Type: application/json" -H "api-key: ${endpointConfig.apiKey}" -X GET ${baseSearchUrl}`,
@@ -12,10 +13,15 @@ class SearchRequest {
   }
 
   getConfig () {
-    return this.config
+    return this.clone(this.config)
   }
 
   issue (requestConfig, callback) {
+    if (this.issued) {
+      throw new Error('This request has already resolved')
+    }
+    this.issued = true
+
     const url = this.config.derivedProperties.baseSearchUrl
     const method = requestConfig.method
 
