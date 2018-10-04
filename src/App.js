@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ControlPanel from './ControlPanel/ControlPanel.js'
-import Results from './Results/Results.js'
+import History from './Results/History.js'
+
+import SearchRequest from './Models/SearchRequest'
 
 class App extends Component {
   constructor (props) {
@@ -8,8 +10,10 @@ class App extends Component {
     const serializedSearchConfig = window.localStorage.getItem('searchConfig')
     const searchConfig = serializedSearchConfig ? JSON.parse(serializedSearchConfig) : null
     this.state = {
-      searchConfig: searchConfig
+      searchConfig: searchConfig,
+      completedRequests: []
     }
+    this.testConfiguration = this.testConfiguration.bind(this)
   }
 
   updateConfig (searchConfig) {
@@ -18,6 +22,17 @@ class App extends Component {
     })
 
     window.localStorage.setItem('searchConfig', JSON.stringify(searchConfig))
+  }
+
+  testConfiguration () {
+    if (!this.state.searchConfig) {
+      window.alert('Endpoint configuration is required')
+    }
+    const request = new SearchRequest(this.state.searchConfig.endpointConfig)
+    request.issue({ method: 'GET' }, (r) => {
+      const completedRequests = [...this.state.completedRequests, r]
+      this.setState({ completedRequests: completedRequests })
+    })
   }
 
   render () {
@@ -29,10 +44,10 @@ class App extends Component {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-xs'>
-              <ControlPanel searchConfig={this.state.searchConfig} onUpdate={(searchConfig) => this.updateConfig(searchConfig)} />
+              <ControlPanel searchConfig={this.state.searchConfig} onUpdate={(searchConfig) => this.updateConfig(searchConfig)} onTestConfiguration={this.testConfiguration} />
             </div>
             <div className='col-lg'>
-              <Results searchConfig={this.state.searchConfig} />
+              <History completedRequests={this.state.completedRequests} />
             </div>
           </div>
         </div>

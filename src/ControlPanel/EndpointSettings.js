@@ -54,7 +54,7 @@ class EndpointSettings extends Component {
           </select>
           <small id='apiVersionHelp' className='form-text text-muted'>Which API Version to use, more details here: <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/' title='More information on Azure Search REST API versions'>https://docs.microsoft.com/en-us/rest/api/searchservice/</a></small>
         </div>
-        <button type='submit' className='btn btn-primary'>Save Endpoint Configuration</button>
+        <button type='submit' className='btn btn-primary'>Update Endpoint Configuration</button>
       </form>
     )
   }

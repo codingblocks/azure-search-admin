@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SearchResult from './SearchResult.js'
 
-class LogList extends Component {
+class History extends Component {
   render () {
     return (
       <div>
@@ -14,4 +14,4 @@ class LogList extends Component {
   }
 }
 
-export default LogList
+export default History

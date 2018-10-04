@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import EndpointSettings from './EndpointSettings'
 import SearchSettings from './SearchSettings'
+import EndpointDisplay from './EndpointDisplay'
 
 class ControlPanel extends Component {
   constructor (props) {
@@ -35,6 +36,7 @@ class ControlPanel extends Component {
           <div id='collapse1' className='collapse' aria-labelledby='endpoint-configuration-header' data-parent='#accordion'>
             <div className='card-body'>
               <EndpointSettings endpointConfig={this.state.endpointConfig} onUpdate={(endpointConfig) => this.updateEndpointSettings(endpointConfig)} />
+              <EndpointDisplay endpointConfig={this.state.endpointConfig} onTestConfiguration={this.props.onTestConfiguration} />
             </div>
           </div>
         </div>
