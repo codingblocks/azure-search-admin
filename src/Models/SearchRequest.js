@@ -28,8 +28,17 @@ class SearchRequest {
     }
     this.issued = true
 
-    const url = this.config.derivedProperties.baseSearchUrl
     const method = requestConfig.method
+    let url = this.config.derivedProperties.baseSearchUrl
+    let queryParams = []
+
+    if (requestConfig.search) {
+      queryParams.push('search=' + window.encodeURI(requestConfig.search))
+    }
+
+    if (queryParams.length) {
+      url = url + '&' + queryParams.join('&')
+    }
 
     let request = new window.XMLHttpRequest()
     request.onreadystatechange = () => {

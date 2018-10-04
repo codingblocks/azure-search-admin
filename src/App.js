@@ -15,6 +15,8 @@ class App extends Component {
     }
     this.testConfig = this.testConfig.bind(this)
     this.updateConfig = this.updateConfig.bind(this)
+    this.clearCache = this.clearCache.bind(this)
+    this.request = this.request.bind(this)
   }
 
   updateConfig (searchConfig, callback) {
@@ -24,9 +26,16 @@ class App extends Component {
     window.localStorage.setItem('searchConfig', JSON.stringify(searchConfig))
   }
 
-  clearCache () {
-    window.localStorage.clear()
-    window.location.reload()
+  request (requestConfig) {
+    if (!this.state.searchConfig) {
+      window.alert('Endpoint configuration is required')
+    }
+    const request = new SearchRequest(this.state.searchConfig.endpointConfig, requestConfig)
+    requestConfig.method = 'GET' // TODO THIS IS NOT GOOD!!
+    request.issue(requestConfig, (r) => {
+      const completedRequests = [...this.state.completedRequests, r]
+      this.setState({ completedRequests: completedRequests })
+    })
   }
 
   testConfig () {
@@ -40,16 +49,27 @@ class App extends Component {
     })
   }
 
+  clearCache () {
+    window.localStorage.clear()
+    window.location.reload()
+  }
+
   render () {
     return (
       <div>
         <header>
-          <h1>Azure Search Admin</h1>
+          <h1>Azure Search Query Builder</h1>
         </header>
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-xs'>
-              <ControlPanel searchConfig={this.state.searchConfig} onUpdate={this.updateConfig} onTestConfiguration={this.testConfig} onClearCache={() => this.clearCache()} />
+              <ControlPanel
+                searchConfig={this.state.searchConfig}
+                onUpdate={this.updateConfig}
+                onTestConfiguration={this.testConfig}
+                onRequest={this.request}
+                onClearCache={this.clearCache}
+              />
             </div>
             <div className='col-lg'>
               <History completedRequests={this.state.completedRequests} />

@@ -29,15 +29,19 @@ class LogList extends Component {
 
   render () {
     const search = this.state.search
+    const result = JSON.parse(search.response.responseText)
+    const count = result.value ? result.value.length : 0
+
     return (
       <div>
         Url: {search.request.config.method} {search.request.url}<br />
         Status: {search.response.status} {search.response.statusText}<br />
         Request Date: {search.request.date.toString()}<br />
         Duration: {this.dateDiff(search.request.date, search.response.date)}<br />
+        Count: {count}<br />
         <span className='small' onClick={this.toggleResponse}>{this.state.responseToggleText}</span>
         <div hidden={this.state.hideResponse}>
-          <ReactJson src={JSON.parse(search.response.responseText)} />
+          <ReactJson src={result} />
         </div>
       </div>
     )

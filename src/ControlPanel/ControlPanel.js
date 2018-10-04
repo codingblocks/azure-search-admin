@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import EndpointSettings from './EndpointSettings'
-import SearchSettings from './SearchSettings'
+import RequestSettings from './RequestSettings'
 import EndpointDisplay from './EndpointDisplay'
 
 class ControlPanel extends Component {
@@ -33,7 +33,7 @@ class ControlPanel extends Component {
           <div className='card-header' id='endpoint-configuration-header'>
             <h5 className='mb-0'>
               <button className='btn btn-link' data-toggle='collapse' data-target='#collapse1' aria-expanded='true' aria-controls='collapse1'>
-                <span hidden={!this.state.endpointConfig}>✓ </span>Endpoint Configuration
+                Endpoint Configuration <span hidden={!this.state.endpointConfig}>✓</span>
               </button>
             </h5>
           </div>
@@ -41,7 +41,7 @@ class ControlPanel extends Component {
             <div className='card-body'>
               <EndpointSettings endpointConfig={this.state.endpointConfig} onUpdate={(endpointConfig) => this.updateEndpointSettings(endpointConfig)} onClearCache={this.props.onClearCache} />
               <hr hidden={!this.state.endpointConfig} />
-              <EndpointDisplay endpointConfig={this.state.endpointConfig} onTestConfiguration={this.props.onTestConfiguration} hideTestButton={true} />
+              <EndpointDisplay endpointConfig={this.state.endpointConfig} onTestConfiguration={this.props.onTestConfiguration} hideTestButton />
             </div>
           </div>
         </div>
@@ -49,14 +49,14 @@ class ControlPanel extends Component {
         <div className='card'>
           <div className='card-header' id='search-settings-header'>
             <h5 className='mb-0'>
-              <button className='btn btn-link' data-toggle='collapse' data-target='#collapse2' aria-expanded='true' aria-controls='collapse2'>
-                Search Settings
+              <button className='btn btn-link' data-toggle='collapse' data-target='#collapse2' aria-expanded='true' aria-controls='collapse2' disabled={!this.state.endpointConfig}>
+                Request Settings <span hidden={this.state.endpointConfig}>requires config</span>
               </button>
             </h5>
           </div>
           <div id='collapse2' className='collapse' aria-labelledby='search-settings-header' data-parent='#accordion'>
             <div className='card-body'>
-              <SearchSettings />
+              <RequestSettings onRequest={this.props.onRequest.bind(this)} />
             </div>
           </div>
         </div>

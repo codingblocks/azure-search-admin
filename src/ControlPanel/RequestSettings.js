@@ -1,25 +1,44 @@
 import React, { Component } from 'react'
 
-class SearchSettings extends Component {
+class RequestSettings extends Component {
   constructor (props) {
     super(props)
     this.state = {
       queryType: 'simple'
     }
     this.changeQueryType = this.changeQueryType.bind(this)
+    this.reset = this.reset.bind(this)
   }
 
   changeQueryType (event) {
     this.setState({ queryType: event.target.value })
   }
 
+  handleSubmit (event) {
+    event.preventDefault()
+
+    const requestConfigList = [].filter.call(this.refs.form.elements, (i) => i.tagName === 'INPUT' || i.tagName === 'SELECT').map((i) => { return { key: i.id, value: i.value } })
+    const requestConfig = requestConfigList.reduce((map, o) => {
+      map[o.key] = o.value
+      return map
+    }, {})
+
+    if (this.props.onRequest) {
+      this.props.onRequest(requestConfig)
+    }
+  }
+
+  reset () {
+    this.refs.form.reset()
+  }
+
   render () {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit.bind(this)} ref='form'>
         <div className='form-group'>
-          <label htmlFor='searchText'>Query</label>
-          <input type='url' id='searchText' placeholder='Samples: Coding+Blocks, NOT Docker, React | VueJs, -JavaScript' className='form-control' aria-describedby='searchTextHelp' />
-          <small id='searchTextHelp' className='form-text text-muted'>Examples, including wild cards and regex <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/simple-query-syntax-in-azure-search'>here</a></small>
+          <label htmlFor='search'>Query</label>
+          <input id='search' placeholder='Samples: Coding+Blocks, NOT Docker, React | VueJs, -JavaScript' className='form-control' aria-describedby='searchHelp' />
+          <small id='searchHelp' className='form-text text-muted'>Examples, including wild cards and regex <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/simple-query-syntax-in-azure-search'>here</a></small>
         </div>
         <div className='form-group'>
           <label htmlFor='maxResults'>Top</label>
@@ -35,6 +54,14 @@ class SearchSettings extends Component {
           <small id='queryTypeHelp' className='form-text text-muted'>More details <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/lucene-query-syntax-in-azure-search' title='More information on Lucene Query Syntax'>here</a></small>
         </div>
         <div className='form-group'>
+          <label htmlFor='highlighting'>Highlighting</label>
+          <select id='highlighting' className='form-control' aria-describedby='highlightingHelp'>
+            <option value=''>No</option>
+            <option>Yes</option>
+          </select>
+          <small id='highlightHelp' className='form-text text-muted'>Optionally can set <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/search-documents' title='More information on highlighting'>pre/post tags</a></small>
+        </div>
+        <div className='form-group'>
           <label htmlFor='fuzzySearch'>Fuzzy Search (requires "full" query type)</label>
           <select id='fuzzySearch' className='form-control' aria-describedby='fuzzySearchHelp' required disabled={this.state.queryType === 'simple'}>
             <option value=''>0 (no fuzzy search)</option>
@@ -43,12 +70,10 @@ class SearchSettings extends Component {
           </select>
           <small id='fuzzySearchHelp' className='form-text text-muted'>Applies to terms only, not phrases. More <a href='https://lucene.apache.org/core/4_10_2/queryparser/org/apache/lucene/queryparser/classic/package-summary.html' title='More information on searches here'>here</a></small>
         </div>
-        <div className='form-check'>
-          <input type='checkbox' className='form-check-input' id='enableHighlighting' />
-          <label className='form-check-label' htmlFor='enableHighlighting'>Enable Highlighting</label>
-          <small id='highlightHelp' className='form-text text-muted'>Optionally can set <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/search-documents' title='More information on highlighting'>pre/post tags</a></small>
+        <div aria-label='Action Buttons for Sending Requests' className='clearfix'>
+          <button type='button' className='btn float-left' onClick={this.reset}>Reset</button>
+          <button type='submit' className='btn btn-primary float-right'>Send Request</button>
         </div>
-        <button type='submit' className='btn btn-primary'>Execute</button>
         <hr />
         <h3>TODO</h3>
         <ul>
@@ -71,4 +96,4 @@ class SearchSettings extends Component {
   }
 }
 
-export default SearchSettings
+export default RequestSettings

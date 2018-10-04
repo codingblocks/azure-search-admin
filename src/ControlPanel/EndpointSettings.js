@@ -28,8 +28,10 @@ class EndpointSettings extends Component {
   }
 
   clearCache () {
-    if (this.props.onClearCache) {
-      this.props.onClearCache()
+    if (window.confirm('Clear Endpoint Configuration, History, and reload this page?')) {
+      if (this.props.onClearCache) {
+        this.props.onClearCache()
+      }
     }
   }
 
@@ -53,7 +55,7 @@ class EndpointSettings extends Component {
           <small id='apiKeyHelp' className='form-text text-muted'>Enter the API Key to use for searching, do *not* enter an admin key</small>
         </div>
         <div className='form-group'>
-          <label htmlFor='apiVersion'>Azure Search API Version</label>
+          <label htmlFor='apiVersion'>API Version</label>
           <select id='apiVersion' defaultValue={endpointConfig.apiVersion} className='form-control' aria-describedby='apiVersionHelp' required>
             <option>2017-11-11-Preview</option>
             <option>2017-11-11</option>
@@ -61,8 +63,10 @@ class EndpointSettings extends Component {
           </select>
           <small id='apiVersionHelp' className='form-text text-muted'>Which API Version to use, more details here: <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/' title='More information on Azure Search REST API versions'>https://docs.microsoft.com/en-us/rest/api/searchservice/</a></small>
         </div>
-        <button type='submit' className='btn btn-primary'>Update and Test</button>
-        <button type='button' className='btn' onClick={this.clearCache}>Clear localcache</button>
+        <div aria-label='Action Buttons for Endpoint Configuration' className='clearfix'>
+          <button type='button' className='btn float-left' onClick={this.clearCache}>Reset</button>
+          <button type='submit' className='btn btn-primary float-right'>Save and Test</button>
+        </div>
       </form>
     )
   }
