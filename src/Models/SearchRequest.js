@@ -1,3 +1,9 @@
+// TODO
+// This should really be a few different classes:
+// * EndpointConfig should define it's fields
+// * SearchBuilder should build a search request (but not issue it)
+// * Clone
+
 class SearchRequest {
   constructor (endpointConfig) {
     this.clone = o => JSON.parse(JSON.stringify(o))
