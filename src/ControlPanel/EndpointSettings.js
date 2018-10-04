@@ -8,6 +8,7 @@ class EndpointSettings extends Component {
       endpointConfig: this.props.endpointConfig
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.clearCache = this.clearCache.bind(this)
   }
 
   handleSubmit (event) {
@@ -23,6 +24,12 @@ class EndpointSettings extends Component {
   fireUpdate () {
     if (this.props.onUpdate) {
       this.props.onUpdate(this.state.endpointConfig)
+    }
+  }
+
+  clearCache () {
+    if (this.props.onClearCache) {
+      this.props.onClearCache()
     }
   }
 
@@ -54,7 +61,8 @@ class EndpointSettings extends Component {
           </select>
           <small id='apiVersionHelp' className='form-text text-muted'>Which API Version to use, more details here: <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/' title='More information on Azure Search REST API versions'>https://docs.microsoft.com/en-us/rest/api/searchservice/</a></small>
         </div>
-        <button type='submit' className='btn btn-primary'>Update Endpoint Configuration</button>
+        <button type='submit' className='btn btn-primary'>Update and Test</button>
+        <button type='button' className='btn' onClick={this.clearCache}>Clear localcache</button>
       </form>
     )
   }

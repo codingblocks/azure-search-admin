@@ -13,18 +13,23 @@ class App extends Component {
       searchConfig: searchConfig,
       completedRequests: []
     }
-    this.testConfiguration = this.testConfiguration.bind(this)
+    this.testConfig = this.testConfig.bind(this)
+    this.updateConfig = this.updateConfig.bind(this)
   }
 
-  updateConfig (searchConfig) {
+  updateConfig (searchConfig, callback) {
     this.setState({
       searchConfig: searchConfig
-    })
-
+    }, callback)
     window.localStorage.setItem('searchConfig', JSON.stringify(searchConfig))
   }
 
-  testConfiguration () {
+  clearCache () {
+    window.localStorage.clear()
+    window.location.reload()
+  }
+
+  testConfig () {
     if (!this.state.searchConfig) {
       window.alert('Endpoint configuration is required')
     }
@@ -44,7 +49,7 @@ class App extends Component {
         <div className='container-fluid'>
           <div className='row'>
             <div className='col-xs'>
-              <ControlPanel searchConfig={this.state.searchConfig} onUpdate={(searchConfig) => this.updateConfig(searchConfig)} onTestConfiguration={this.testConfiguration} />
+              <ControlPanel searchConfig={this.state.searchConfig} onUpdate={this.updateConfig} onTestConfiguration={this.testConfig} onClearCache={() => this.clearCache()} />
             </div>
             <div className='col-lg'>
               <History completedRequests={this.state.completedRequests} />

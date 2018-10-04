@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SearchRequest from '../Models/SearchRequest.js'
 
-class Results extends Component {
+class EndpointDisplay extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -14,7 +14,6 @@ class Results extends Component {
     const request = configured && new SearchRequest(this.props.endpointConfig)
     const config = configured && request.getConfig()
     const baseSearchUrl = configured ? config.derivedProperties.baseSearchUrl : 'Endpoint Configuration Required'
-    const apiKey = configured ? config.endpointConfig.apiKey : 'Endpoint Configuration Required'
     const curlCommand = configured ? config.derivedProperties.baseCurlCommand : 'Endpoint Configuration Required'
 
     return (
@@ -25,14 +24,12 @@ class Results extends Component {
             <span className='small'>Note: API Key is a required header, you can't simply hit this url in a browser</span><br />
             <code>{baseSearchUrl}</code>
           </p>
-          <p>Query API Key:<br /><code>{apiKey}</code></p>
           <p>Sample CURL command:<br /><code>{curlCommand}</code></p>
+          <button type='button' className='btn btn-primary' onClick={this.props.onTestConfiguration} hidden={this.props.hideTestButton}>Test Endpoint</button>
         </div>
-        <div hidden={configured}>Endpoint Configuration Required</div>
-        <button type='button' className='btn btn-primary' disabled={!configured} onClick={this.props.onTestConfiguration}>Test Endpoint</button>
       </div>
     )
   }
 }
 
-export default Results
+export default EndpointDisplay
