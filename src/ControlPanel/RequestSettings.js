@@ -12,6 +12,10 @@ class RequestSettings extends Component {
 
   changeQueryType (event) {
     this.setState({ queryType: event.target.value })
+
+    if (event.target.value !== 'full') {
+      document.getElementById('fuzzySearch').value = ''
+    }
   }
 
   handleSubmit (event) {
@@ -28,7 +32,7 @@ class RequestSettings extends Component {
     }
   }
 
-  validateFuzzySearch () {
+  updateFuzzySearch () {
     // const queryTypeValue = window.document.getElementById('queryType').value
     // if (queryTypeValue !== 'full') {
     //   return
@@ -45,7 +49,7 @@ class RequestSettings extends Component {
       <form onSubmit={this.handleSubmit.bind(this)} ref='form'>
         <div className='form-group'>
           <label htmlFor='search'>Query</label>
-          <input id='search' placeholder='Samples: Coding+Blocks, NOT Docker, React | VueJs, -JavaScript' className='form-control' aria-describedby='searchHelp' onBlur={this.validateFuzzySearch.bind(this)} />
+          <input id='search' placeholder='Samples: Coding+Blocks, NOT Docker, React | VueJs, -JavaScript' className='form-control' aria-describedby='searchHelp' />
           <small id='searchHelp' className='form-text text-muted'>Examples, including wild cards and regex <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/simple-query-syntax-in-azure-search'>here</a></small>
         </div>
         <div className='form-group'>
@@ -63,7 +67,7 @@ class RequestSettings extends Component {
         </div>
         <div className='form-group'>
           <label htmlFor='fuzzySearch'>Fuzzy Search (requires "full" query type)</label>
-          <select id='fuzzySearch' className='form-control' aria-describedby='fuzzySearchHelp' disabled={this.state.queryType === 'simple'} onChange={this.validateFuzzySearch.bind()}>
+          <select id='fuzzySearch' className='form-control' aria-describedby='fuzzySearchHelp' disabled={this.state.queryType === 'simple'} >
             <option value=''>0 (no fuzzy search)</option>
             <option>1</option>
             <option>2</option>
