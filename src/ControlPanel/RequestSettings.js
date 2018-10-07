@@ -27,17 +27,9 @@ class RequestSettings extends Component {
       return map
     }, {})
 
-    if (this.props.onRequest) {
-      this.props.onRequest(requestConfig)
+    if (this.props.onSearch) {
+      this.props.onSearch(requestConfig)
     }
-  }
-
-  updateFuzzySearch () {
-    // const queryTypeValue = window.document.getElementById('queryType').value
-    // if (queryTypeValue !== 'full') {
-    //   return
-    // }
-    // const fuzzySearchValue = window.document.getElementById('fuzzySearch').value
   }
 
   reset () {

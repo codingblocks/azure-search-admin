@@ -5,6 +5,25 @@ header h1 {
   padding: 10px;
 }
 
+.app-container {
+  margin: 10px;
+}
+
 .control-panel {
   max-width: 600px;
+}
+
+.history-rows > div {
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+div.history-rows > div:nth-of-type(odd) {
+  background: rgba(0,0,0,.03);
+}
+
+.long-url {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
