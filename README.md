@@ -11,7 +11,15 @@ You simply configure your endpoint and then you can tweak the various input para
 
 ## Getting it running
 
-* npm install && npm start
+```bash
+# build the image:
+docker build -t azure-search-admin .
+docker run -p 3000:3000 -d azure-search-admin
+```
+
+or...
+
+```npm install && npm start```
 
 ## Troubleshooting
 
