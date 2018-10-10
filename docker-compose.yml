@@ -3,7 +3,7 @@ services:
   admin:
     image: azure-search-admin
     build:
-      context: ./admin
+      context: .
       dockerfile: dockerfile.admin
     depends_on:
       - proxy
@@ -15,7 +15,7 @@ services:
       - ./admin/public:/usr/src/app/public
   proxy:
     build:
-      context: ./proxy
+      context: .
       dockerfile: dockerfile.proxy
     image: azure-search-proxy
     ports:

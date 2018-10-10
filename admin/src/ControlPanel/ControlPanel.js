@@ -65,7 +65,7 @@ class ControlPanel extends Component {
         <div className='card'>
           <div className='card-header' id='header-synonyms'>
             <h5 className='mb-0'>
-              <button className='btn btn-link' data-toggle='collapse' data-target='#collapse-synonyms' aria-expanded='true' aria-controls='collapse-synonyms' disabled>
+              <button className='btn btn-link' data-toggle='collapse' data-target='#collapse-synonyms' aria-expanded='true' aria-controls='collapse-synonyms' disabled={!this.state.endpointConfig}>
                 Synonyms <span hidden={this.state.endpointConfig}>requires config</span>
               </button>
             </h5>
