@@ -4,13 +4,13 @@ WORKDIR /usr/src/app
 
 # Copy the package files separately,
 # so we only install when something changes in one of those files
-COPY client/package.json .
-COPY client/package-lock.json .
+COPY proxy/package.json .
+COPY proxy/package-lock.json .
 
 RUN npm install
 
-COPY client/. .
+COPY proxy/. .
 
-EXPOSE 3000
+EXPOSE 5000
 
 CMD [ "npm", "start" ]

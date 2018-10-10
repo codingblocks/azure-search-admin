@@ -29,6 +29,8 @@ class SearchRequest extends SearchEngineRequest {
     if (queryParams.length) {
       url = url + '&' + queryParams.join('&')
     }
+
+    // TODO configure?
     return url
   }
 }

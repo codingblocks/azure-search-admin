@@ -12,14 +12,15 @@ You simply configure your endpoint and then you can tweak the various input para
 ## Getting it running
 
 ```bash
-# build the image:
-docker build -t azure-search-admin .
-docker run -p 3000:3000 -d azure-search-admin
+docker-compose up
 ```
 
 or...
 
-```npm install && npm start```
+```bash
+cd admin && npm install && npm start # start up the site on :3000
+cd ../proxy && npm install && npm start # start up the proxy on :5000
+```
 
 ## Troubleshooting
 

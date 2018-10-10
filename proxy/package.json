@@ -1,0 +1,15 @@
+{
+  "name": "azure-search-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "http-proxy": "^1.17.0",
+    "request": "^2.88.0"
+  }
+}
