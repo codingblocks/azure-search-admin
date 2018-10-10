@@ -1,23 +1,22 @@
 import React, { Component } from 'react'
-import ReactJson from 'react-json-view'
 
 class RequestResult extends Component {
   constructor (props) {
     super(props)
     this.state = {
       search: this.props.search,
-      hideResponse: true,
       responseToggleText: 'show response'
     }
-    this.toggleResponse = this.toggleResponse.bind(this)
+    this.showResponse = this.showResponse.bind(this)
   }
 
-  toggleResponse () {
-    const currentlyHidden = this.state.hideResponse
-    this.setState({
-      hideResponse: !currentlyHidden,
-      responseToggleText: !currentlyHidden ? 'show response' : 'hide response'
-    })
+  showResponse (e) {
+    e.preventDefault()
+    const search = this.state.search
+    const response = JSON.parse(search.response.responseText)
+    if (this.props.onShowResponse) {
+      this.props.onShowResponse(response)
+    }
   }
 
   dateDiff (date1, date2) {
@@ -48,10 +47,7 @@ class RequestResult extends Component {
             Duration: <span>{this.dateDiff(search.request.date, search.response.date)}</span><br />
           </div>
         </div>
-        <span className='small' onClick={this.toggleResponse}>{this.state.responseToggleText}</span>
-        <div hidden={this.state.hideResponse}>
-          <ReactJson src={result} />
-        </div>
+        <a href='#' className='small' onClick={this.showResponse}>view response</a>
       </div>
     )
   }
