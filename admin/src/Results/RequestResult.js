@@ -31,8 +31,11 @@ class RequestResult extends Component {
     const result = JSON.parse(search.response.responseText)
     const count = result.value ? result.value.length : 0
     const config = search.request.config || {}
+    const time = `${search.request.date.getHours()}:${search.request.date.getMinutes()}:${search.request.date.getSeconds()}`
+    const formattedDate = `${search.request.date.toLocaleDateString()} ${time}`
     return (
       <div>
+        <b>{config.title}</b>
         <div className='row'>
           <div className='col-3'>
             Search Terms: <span>{config.search || 'n/a'}</span><br />
@@ -43,7 +46,7 @@ class RequestResult extends Component {
           <div className='col-9'>
             Url: <span className='long-url'>{config.method} {search.request.url}</span><br />
             Status: <span>{search.response.status} {search.response.statusText}</span><br />
-            Request Date: <span>{search.request.date.toString()}</span><br />
+            Request Date: <span>{formattedDate}</span><br />
             Duration: <span>{this.dateDiff(search.request.date, search.response.date)}</span><br />
           </div>
         </div>

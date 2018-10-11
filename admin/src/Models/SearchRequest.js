@@ -3,8 +3,9 @@ import SearchEngineRequest from './SearchEngineRequest'
 class SearchRequest extends SearchEngineRequest {
   issue (requestConfig, callback) {
     const url = this.getUrl(requestConfig)
-
-    this.issueSearchEngineRequest(requestConfig, callback, 'GET', url) // TODO API also supports (and even recommends POST)
+    let config = this.clone(requestConfig)
+    config.title = 'Search'
+    this.issueSearchEngineRequest(config, callback, 'GET', url) // TODO API also supports (and even recommends POST)
   }
   getUrl (requestConfig) {
     let url = this.config.derivedProperties.baseSearchUrl

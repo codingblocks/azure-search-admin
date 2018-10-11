@@ -58,14 +58,7 @@ class App extends Component {
   }
 
   testConfig () {
-    if (!this.state.searchConfig) {
-      window.alert('Endpoint configuration is required')
-    }
-    const request = new SearchRequest(this.state.searchConfig.endpointConfig)
-    request.issue({ method: 'GET' }, (r) => {
-      const completedRequests = [...this.state.completedRequests, r]
-      this.setState({ completedRequests: completedRequests })
-    })
+    this.getIndexStatistics()
   }
 
   issueAndLogRequest (request, requestConfig) {
