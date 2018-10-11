@@ -88,7 +88,9 @@ class ControlPanel extends Component {
           </div>
           <div id='collapse-statistics' className='collapse' aria-labelledby='header-statistics' data-parent='#accordion'>
             <div className='card-body'>
-              <Statistics onGetStatistics={this.props.onGetStatistics.bind(this)} />
+              <Statistics
+                onGetServiceStatistics={this.props.onGetServiceStatistics.bind(this)}
+                onGetIndexStatistics={this.props.onGetIndexStatistics.bind(this)}/>
             </div>
           </div>
         </div>

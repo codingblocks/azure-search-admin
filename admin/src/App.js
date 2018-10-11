@@ -4,7 +4,8 @@ import History from './Results/History.js'
 
 import SearchRequest from './Models/SearchRequest'
 import SynonymListRequest from './Models/SynonymListRequest'
-import StatisticsRequest from './Models/StatisticsRequest'
+import StatisticsIndexRequest from './Models/StatisticsIndexRequest'
+import StatisticsServiceRequest from './Models/StatisticsServiceRequest'
 
 class App extends Component {
   constructor (props) {
@@ -40,11 +41,19 @@ class App extends Component {
     this.issueAndLogRequest(request)
   }
 
-  getStatistics () {
+  getServiceStatistics () {
     if (!this.state.searchConfig) {
       window.alert('Endpoint configuration is required')
     }
-    const request = new StatisticsRequest(this.state.searchConfig.endpointConfig)
+    const request = new StatisticsServiceRequest(this.state.searchConfig.endpointConfig)
+    this.issueAndLogRequest(request)
+  }
+
+  getIndexStatistics () {
+    if (!this.state.searchConfig) {
+      window.alert('Endpoint configuration is required')
+    }
+    const request = new StatisticsIndexRequest(this.state.searchConfig.endpointConfig)
     this.issueAndLogRequest(request)
   }
 
@@ -90,7 +99,8 @@ class App extends Component {
                   onTestConfiguration={this.testConfig.bind(this)}
                   onSearch={this.search.bind(this)}
                   onListSynonyms={this.listSynonyms.bind(this)}
-                  onGetStatistics={this.getStatistics.bind(this)}
+                  onGetServiceStatistics={this.getServiceStatistics.bind(this)}
+                  onGetIndexStatistics={this.getIndexStatistics.bind(this)}
                 />
               </div>
               <div className='col-lg'>
