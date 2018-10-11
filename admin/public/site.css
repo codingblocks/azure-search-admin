@@ -10,20 +10,26 @@ header h1 {
 }
 
 .control-panel {
-  max-width: 600px;
+  max-width: 400px;
 }
 
 .history-rows > div {
   padding: 10px;
   border: 1px solid rgba(0,0,0,.125);
-}
-
-div.history-rows > div:nth-of-type(odd) {
   background: rgba(0,0,0,.03);
+  color: rgba(0,0,0,.5);
 }
 
-.long-url {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+div.history-rows > div:hover {
+  border-color: orange;
+  color: black;
+}
+
+div.history-rows > div:first-of-type {
+  background: white;
+  color: black;
+}
+
+.btn-primary {
+  background-color: #339999;
 }

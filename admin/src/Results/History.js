@@ -9,10 +9,11 @@ class History extends Component {
   }
 
   render () {
+    const orderedList = this.props.completedRequests.concat([]).reverse()
     return (
       <div className='history-rows'>
         <h3>History</h3>
-        {this.props.completedRequests.map(r =>
+        {orderedList.map(r =>
           <RequestResult search={r} key={r.request.date} onShowResponse={this.showResponse.bind(this)} />
         )}
         <ResponseModal id='response-modal' response={this.state.response} />

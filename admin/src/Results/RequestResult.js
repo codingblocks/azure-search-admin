@@ -34,8 +34,10 @@ class RequestResult extends Component {
     const time = `${search.request.date.getHours()}:${search.request.date.getMinutes()}:${search.request.date.getSeconds()}`
     const formattedDate = `${search.request.date.toLocaleDateString()} ${time}`
     return (
-      <div>
-        <b>{config.title}</b>
+      <div class='fadeIn'>
+        <b>{config.title}</b><br/>
+        <span class='small'>{config.method} {search.request.url}</span>
+        <br/><br/>
         <div className='row'>
           <div className='col-3'>
             Search Terms: <span>{config.search || 'n/a'}</span><br />
@@ -44,7 +46,6 @@ class RequestResult extends Component {
             Hits: <span>{count}</span>
           </div>
           <div className='col-9'>
-            Url: <span className='long-url'>{config.method} {search.request.url}</span><br />
             Status: <span>{search.response.status} {search.response.statusText}</span><br />
             Request Date: <span>{formattedDate}</span><br />
             Duration: <span>{this.dateDiff(search.request.date, search.response.date)}</span><br />

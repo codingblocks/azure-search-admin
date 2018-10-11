@@ -4,7 +4,7 @@ import ReactJson from 'react-json-view'
 class Response extends Component {
   render () {
     const modalContent = this.props.response
-      ? <ReactJson src={this.props.response} indentWidth='2' collapsed={1} />
+      ? <ReactJson src={this.props.response} indentWidth='2' collapsed={1} collapseStringsAfterLength={100} />
       : 'No response loaded'
 
     return <div className='modal fade bd-example-modal-lg' tabIndex='-1' role='dialog' id={this.props.id}>
