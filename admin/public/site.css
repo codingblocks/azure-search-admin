@@ -10,7 +10,7 @@ header h1 {
 }
 
 .control-panel {
-  max-width: 400px;
+  width: 380px;
 }
 
 .history-rows > div {
@@ -32,4 +32,12 @@ div.history-rows > div:first-of-type {
 
 .btn-primary {
   background-color: #339999;
+}
+
+a {
+  color: #339999;
+}
+
+.btn-link {
+  color: #339999;
 }

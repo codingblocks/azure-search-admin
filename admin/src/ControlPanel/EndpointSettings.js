@@ -64,7 +64,7 @@ class EndpointSettings extends Component {
           <small id='apiVersionHelp' className='form-text text-muted'>Which API Version to use, more details here: <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/' title='More information on Azure Search REST API versions'>https://docs.microsoft.com/en-us/rest/api/searchservice/</a></small>
         </div>
         <div aria-label='Action Buttons for Endpoint Configuration' className='clearfix'>
-          <button type='button' className='btn float-left' onClick={this.clearCache}>Reset</button>
+          <button type='button' className='btn btn-link float-left' onClick={this.clearCache}>Reset</button>
           <button type='submit' className='btn btn-primary float-right'>Save and Test</button>
         </div>
       </form>

@@ -67,7 +67,7 @@ class RequestSettings extends Component {
           <small id='fuzzySearchHelp' className='form-text text-muted'>Applies to terms only, not phrases. More <a href='https://lucene.apache.org/core/4_10_2/queryparser/org/apache/lucene/queryparser/classic/package-summary.html' title='More information on searches here'>here</a></small>
         </div>
         <div aria-label='Action Buttons for Sending Requests' className='clearfix'>
-          <button type='button' className='btn float-left' onClick={this.reset}>Reset</button>
+          <button type='button' className='btn btn-link float-left' onClick={this.reset}>Reset</button>
           <button type='submit' className='btn btn-primary float-right'>Send Request</button>
         </div>
         <hr />

@@ -34,9 +34,10 @@ class RequestResult extends Component {
     const time = `${search.request.date.getHours()}:${search.request.date.getMinutes()}:${search.request.date.getSeconds()}`
     const formattedDate = `${search.request.date.toLocaleDateString()} ${time}`
     return (
-      <div class='fadeIn'>
+      <div>
         <b>{config.title}</b><br/>
-        <span class='small'>{config.method} {search.request.url}</span>
+        <span className='small' data-toggle="tooltip" data-placement="top" title="Note: you must pass an API key as a header">{config.method} {search.request.url}</span><br/>
+        <button className='small btn-link' onClick={this.showResponse}>view response</button>
         <br/><br/>
         <div className='row'>
           <div className='col-3'>
@@ -51,7 +52,6 @@ class RequestResult extends Component {
             Duration: <span>{this.dateDiff(search.request.date, search.response.date)}</span><br />
           </div>
         </div>
-        <a href='#' className='small' onClick={this.showResponse}>view response</a>
       </div>
     )
   }
