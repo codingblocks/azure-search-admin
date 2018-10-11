@@ -3,6 +3,7 @@ import EndpointSettings from './EndpointSettings'
 import RequestSettings from './RequestSettings'
 import EndpointDisplay from './EndpointDisplay'
 import Synonyms from './Synonyms'
+import Statistics from './Statistics'
 
 class ControlPanel extends Component {
   constructor (props) {
@@ -73,6 +74,21 @@ class ControlPanel extends Component {
           <div id='collapse-synonyms' className='collapse' aria-labelledby='header-synonyms' data-parent='#accordion'>
             <div className='card-body'>
               <Synonyms onListSynonyms={this.props.onListSynonyms.bind(this)} />
+            </div>
+          </div>
+        </div>
+
+        <div className='card'>
+          <div className='card-header' id='header-statistics'>
+            <h5 className='mb-0'>
+              <button className='btn btn-link' data-toggle='collapse' data-target='#collapse-statistics' aria-expanded='true' aria-controls='collapse-statistics' disabled={!this.state.endpointConfig}>
+                Statistics <span hidden={this.state.endpointConfig}>requires config</span>
+              </button>
+            </h5>
+          </div>
+          <div id='collapse-statistics' className='collapse' aria-labelledby='header-statistics' data-parent='#accordion'>
+            <div className='card-body'>
+              <Statistics onGetStatistics={this.props.onGetStatistics.bind(this)} />
             </div>
           </div>
         </div>

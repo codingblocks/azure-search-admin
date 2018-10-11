@@ -42,6 +42,7 @@ class SearchEngineRequest {
     const proxyUrl = `http://localhost:5000/${url}`
     request.open(method, proxyUrl, true)
     request.setRequestHeader('api-key', this.config.endpointConfig.apiKey)
+    request.setRequestHeader('Content-Type', 'application/json')
 
     this.config.request = {
       config: requestConfig,

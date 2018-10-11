@@ -4,6 +4,7 @@ import History from './Results/History.js'
 
 import SearchRequest from './Models/SearchRequest'
 import SynonymListRequest from './Models/SynonymListRequest'
+import StatisticsRequest from './Models/StatisticsRequest'
 
 class App extends Component {
   constructor (props) {
@@ -36,6 +37,14 @@ class App extends Component {
       window.alert('Endpoint configuration is required')
     }
     const request = new SynonymListRequest(this.state.searchConfig.endpointConfig)
+    this.issueAndLogRequest(request)
+  }
+
+  getStatistics () {
+    if (!this.state.searchConfig) {
+      window.alert('Endpoint configuration is required')
+    }
+    const request = new StatisticsRequest(this.state.searchConfig.endpointConfig)
     this.issueAndLogRequest(request)
   }
 
@@ -81,6 +90,7 @@ class App extends Component {
                   onTestConfiguration={this.testConfig.bind(this)}
                   onSearch={this.search.bind(this)}
                   onListSynonyms={this.listSynonyms.bind(this)}
+                  onGetStatistics={this.getStatistics.bind(this)}
                 />
               </div>
               <div className='col-lg'>
