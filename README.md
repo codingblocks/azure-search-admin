@@ -17,14 +17,14 @@ docker-compose up
 docker build -t azure-search-admin -f dockerfile.admin .
 docker run -p 3000:3000 -d azure-search-admin
 docker build -t azure-search-admin -f dockerfile.proxy .
-docker run -p 5000:5000 azure-search-proxy
+docker run -p 3001:5000 azure-search-proxy
 ```
 
 or...
 
 ```bash
 cd admin && npm install && npm start # start up the site on :3000
-cd ../proxy && npm install && npm start # start up the proxy on :5000
+cd ../proxy && npm install && npm start # start up the proxy on :3001
 ```
 
 ## Troubleshooting
