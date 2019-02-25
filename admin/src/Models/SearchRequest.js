@@ -19,9 +19,16 @@ class SearchRequest extends SearchEngineRequest {
       queryParams.push('queryType=' + window.encodeURI(requestConfig.queryType))
     }
 
-    if (requestConfig.queryType === 'full' && requestConfig.fuzzySearch && requestConfig.search) {
+    if (
+      requestConfig.queryType === 'full' &&
+      requestConfig.fuzzySearch &&
+      requestConfig.search
+    ) {
       const suffix = `~${requestConfig.fuzzySearch}`
-      const adjustedSearchTerm = requestConfig.search.split(' ').map(i => i + suffix).join(' ')
+      const adjustedSearchTerm = requestConfig.search
+        .split(' ')
+        .map(i => i + suffix)
+        .join(' ')
       queryParams.push('search=' + window.encodeURI(adjustedSearchTerm))
     } else if (requestConfig.search) {
       queryParams.push('search=' + window.encodeURI(requestConfig.search))

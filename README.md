@@ -17,7 +17,7 @@ docker-compose up
 docker build -t azure-search-admin -f dockerfile.admin .
 docker run -p 3000:3000 -d azure-search-admin
 docker build -t azure-search-admin -f dockerfile.proxy .
-docker run -p 3001:5000 azure-search-proxy
+docker run -p 5000:5000 azure-search-proxy
 ```
 
 or...

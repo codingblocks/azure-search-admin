@@ -9,6 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "body": "^5.1.0",
     "http-proxy": "^1.17.0",
     "request": "^2.88.0"
   }
