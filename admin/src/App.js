@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import ControlPanel from './ControlPanel/ControlPanel.js'
 import History from './Results/History.js'
-
 import CreateIndexRequest from './Models/CreateIndexRequest'
 import DeleteIndexRequest from './Models/DeleteIndexRequest'
+import UploadActionRequest from './Models/UploadActionRequest'
 import SearchRequest from './Models/SearchRequest'
 import SynonymListRequest from './Models/SynonymListRequest'
 import StatisticsIndexRequest from './Models/StatisticsIndexRequest'
@@ -43,7 +43,7 @@ class App extends Component {
     this.issueAndLogRequest(request, requestConfig)
   }
 
-  deleteIndex (requestConfig) {
+  deleteIndex () {
     const confirmed = window.confirm(
       `Are you REALLY sure you want to delete "${
         this.state.searchConfig.endpointConfig.searchIndex
@@ -63,6 +63,13 @@ class App extends Component {
       this.state.searchConfig.endpointConfig
     )
     this.issueAndLogRequest(request, { indexDefinition })
+  }
+
+  uploadAction (requestConfig) {
+    const request = new UploadActionRequest(
+      this.state.searchConfig.endpointConfig
+    )
+    this.issueAndLogRequest(request, requestConfig)
   }
 
   listSynonyms () {
@@ -133,6 +140,7 @@ class App extends Component {
                   onGetIndexStatistics={this.getIndexStatistics.bind(this)}
                   onDeleteIndex={this.deleteIndex.bind(this)}
                   onCreateIndex={this.createIndex.bind(this)}
+                  onUploadAction={this.uploadAction.bind(this)}
                 />
               </div>
               <div className='col-lg'>

@@ -1,13 +1,6 @@
 import React, { Component } from 'react'
 
 class IndexManagement extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      queryType: 'simple'
-    }
-  }
-
   handleCreate (event) {
     event.preventDefault()
     const indexDefinition = JSON.stringify(

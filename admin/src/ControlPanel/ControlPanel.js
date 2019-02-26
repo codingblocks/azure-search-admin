@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import EndpointSettings from './EndpointSettings'
 import RequestSettings from './RequestSettings'
 import IndexManagement from './IndexManagement'
+import DataManagement from './DataManagement'
 import EndpointDisplay from './EndpointDisplay'
 import Synonyms from './Synonyms'
 import Statistics from './Statistics'
@@ -99,6 +100,36 @@ class ControlPanel extends Component {
               <IndexManagement
                 onDeleteIndex={this.props.onDeleteIndex.bind(this)}
                 onCreateIndex={this.props.onCreateIndex.bind(this)}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className='card'>
+          <div className='card-header' id='header-data'>
+            <h5 className='mb-0'>
+              <button
+                className='btn btn-link'
+                data-toggle='collapse'
+                data-target='#collapse-data'
+                aria-expanded='true'
+                aria-controls='collapse-data'
+                disabled={!this.state.endpointConfig}
+              >
+                Data Management{' '}
+                <span hidden={this.state.endpointConfig}>requires config</span>
+              </button>
+            </h5>
+          </div>
+          <div
+            id='collapse-data'
+            className='collapse'
+            aria-labelledby='header-data'
+            data-parent='#accordion'
+          >
+            <div className='card-body'>
+              <DataManagement
+                onUploadAction={this.props.onUploadAction.bind(this)}
               />
             </div>
           </div>
