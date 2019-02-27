@@ -237,7 +237,6 @@ class ControlPanel extends Component {
                 aria-controls='collapse-todo'
               >
                 TODO{' '}
-                <span hidden={this.state.endpointConfig}>requires config</span>
               </button>
             </h5>
           </div>
