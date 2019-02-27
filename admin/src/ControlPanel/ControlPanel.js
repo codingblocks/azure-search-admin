@@ -225,6 +225,60 @@ class ControlPanel extends Component {
             </div>
           </div>
         </div>
+
+        <div className='card'>
+          <div className='card-header' id='header-todo'>
+            <h5 className='mb-0'>
+              <button
+                className='btn btn-link'
+                data-toggle='collapse'
+                data-target='#collapse-todo'
+                aria-expanded='true'
+                aria-controls='collapse-todo'
+              >
+                TODO{' '}
+                <span hidden={this.state.endpointConfig}>requires config</span>
+              </button>
+            </h5>
+          </div>
+          <div
+            id='collapse-todo'
+            className='collapse'
+            aria-labelledby='header-todo'
+            data-parent='#accordion'
+          >
+            <div className='card-body'>
+              <p>
+                This is a work in progress, here's a rough ordered list of
+                priorities.{' '}
+                <a href='https://github.com/codingblocks/azure-search-admin'>
+                  Feel free to submit a PR
+                </a>
+                !
+              </p>
+              <ul>
+                <li>Aggregates</li>
+                <li>Scoring Profile</li>
+                <li>Field-scoped queries</li>
+                <li>Suggestions</li>
+                <li>Term Boosting</li>
+                <li>Proximity Search</li>
+                <li>Paging</li>
+                <li>Highlight pre/post tag</li>
+                <li>Sorting</li>
+                <li>
+                  <a
+                    href='https://docs.microsoft.com/en-us/rest/api/searchservice/indexer-operations'
+                    title='More about indexer operations'
+                  >
+                    Indexer Operations
+                  </a>
+                </li>
+                <li>Skillset Operations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

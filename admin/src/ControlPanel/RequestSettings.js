@@ -139,27 +139,6 @@ class RequestSettings extends Component {
           </button>
         </div>
         <hr />
-        <h3>TODO</h3>
-        <ul>
-          <li>Aggregates</li>
-          <li>Scoring Profile</li>
-          <li>Field-scoped queries</li>
-          <li>Suggestions</li>
-          <li>Term Boosting</li>
-          <li>Proximity Search</li>
-          <li>Paging</li>
-          <li>Highlight pre/post tag</li>
-          <li>Sorting</li>
-          <li>
-            <a
-              href='https://docs.microsoft.com/en-us/rest/api/searchservice/indexer-operations'
-              title='More about indexer operations'
-            >
-              Indexer Operations
-            </a>
-          </li>
-          <li>Skillset Operations</li>
-        </ul>
       </form>
     )
   }
