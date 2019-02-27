@@ -23,7 +23,6 @@ class RequestResult extends Component {
 
   showRequest (e) {
     e.preventDefault()
-    debugger
     const search = this.state.search
     const message = {
       method: this.state.search.request.method,
