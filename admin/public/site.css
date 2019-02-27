@@ -13,11 +13,24 @@ header h1 {
   width: 380px;
 }
 
+.history-rows .entry {
+  height: 100px;
+  overflow: hidden;
+}
+
+.history-rows > .entry:hover {
+  height: 220px;
+}
+
+.history-rows > .entry:first-of-type {
+  height: 220px;
+}
+
 .history-rows > div {
   padding: 10px;
-  border: 1px solid rgba(0,0,0,.125);
-  background: rgba(0,0,0,.03);
-  color: rgba(0,0,0,.5);
+  border: 1px solid rgba(0,0,0,.1);
+  background: rgba(0,0,0,.02);
+  color: rgba(0,0,0,.3);
 }
 
 div.history-rows > div:hover {
