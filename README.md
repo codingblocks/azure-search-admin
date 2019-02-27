@@ -24,7 +24,7 @@ or...
 
 ```bash
 cd admin && npm install && npm start # start up the site on :3000
-cd ../proxy && npm install && npm start # start up the proxy on :3001
+cd proxy && npm install && npm start # start up the proxy on :3001
 ```
 
 ## Troubleshooting

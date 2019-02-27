@@ -36,6 +36,7 @@ class SearchEngineRequest {
           )
           return
         }
+
         this.config.response = {
           date: new Date(),
           status: request.status,
@@ -48,13 +49,21 @@ class SearchEngineRequest {
 
     const proxyUrl = `http://localhost:5000/${url}`
     request.open(method, proxyUrl, true)
-    request.setRequestHeader('api-key', this.config.endpointConfig.apiKey)
-    request.setRequestHeader('Content-Type', 'application/json')
+    const headers = {
+      'api-key': this.config.endpointConfig.apiKey,
+      'content-type': 'application/json'
+    }
+    Object.keys(headers).forEach(key => {
+      request.setRequestHeader(key, headers[key])
+    })
 
     this.config.request = {
       config: requestConfig,
       date: new Date(),
-      url: url
+      url,
+      method,
+      body,
+      headers
     }
 
     request.send(body)

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import RequestResult from './RequestResult.js'
-import ResponseModal from './ResponseModal.js'
+import JSONModal from './JSONModal.js'
 
 class History extends Component {
   constructor (props) {
     super(props)
-    this.state = { response: null }
+    this.state = { title: null, json: null }
   }
 
   render () {
@@ -13,16 +13,24 @@ class History extends Component {
     return (
       <div className='history-rows'>
         <h3>History</h3>
-        {orderedList.map(r =>
-          <RequestResult search={r} key={r.request.date} onShowResponse={this.showResponse.bind(this)} />
-        )}
-        <ResponseModal id='response-modal' response={this.state.response} />
+        {orderedList.map(r => (
+          <RequestResult
+            search={r}
+            key={r.request.date}
+            onShowJson={this.showJson.bind(this)}
+          />
+        ))}
+        <JSONModal
+          id='response-modal'
+          title={this.state.title}
+          json={this.state.json}
+        />
       </div>
     )
   }
 
-  showResponse (response) {
-    this.setState({ response: response })
+  showJson (title, json) {
+    this.setState({ title, json })
     window.$('#response-modal').modal('show')
   }
 }

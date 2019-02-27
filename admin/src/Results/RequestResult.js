@@ -7,7 +7,6 @@ class RequestResult extends Component {
       search: this.props.search,
       responseToggleText: 'show response'
     }
-    this.showResponse = this.showResponse.bind(this)
   }
 
   showResponse (e) {
@@ -17,8 +16,24 @@ class RequestResult extends Component {
       search && search.response && search.response.responseText
         ? JSON.parse(search.response.responseText)
         : {}
-    if (this.props.onShowResponse) {
-      this.props.onShowResponse(response)
+    if (this.props.onShowJson) {
+      this.props.onShowJson('Response', response)
+    }
+  }
+
+  showRequest (e) {
+    e.preventDefault()
+    debugger
+    const search = this.state.search
+    const message = {
+      method: this.state.search.request.method,
+      url: this.state.search.request.url,
+      headers: this.state.search.request.headers,
+      body: search.request.body ? JSON.parse(search.request.body) : {}
+    }
+
+    if (this.props.onShowJson) {
+      this.props.onShowJson('Request', message)
     }
   }
 
@@ -36,11 +51,12 @@ class RequestResult extends Component {
         ? JSON.parse(search.response.responseText)
         : {}
     const count = result.value ? result.value.length : 0
-    const config = search.request.config || {}
+    const request = search.request || {}
+    const config = request.config || {}
     const time = `${search.request.date.getHours()}:${search.request.date.getMinutes()}:${search.request.date.getSeconds()}`
     const formattedDate = `${search.request.date.toLocaleDateString()} ${time}`
     return (
-      <div>
+      <div className='entry'>
         <b>{config.title}</b>
         <br />
         <span
@@ -49,10 +65,19 @@ class RequestResult extends Component {
           data-placement='top'
           title='Note: you must pass an API key as a header'
         >
-          {config.method} {search.request.url}
+          {request.method} {search.request.url}
         </span>
         <br />
-        <button className='small btn-link' onClick={this.showResponse}>
+        <button
+          className='small btn-link'
+          onClick={this.showRequest.bind(this)}
+        >
+          view request
+        </button>
+        <button
+          className='small btn-link'
+          onClick={this.showResponse.bind(this)}
+        >
           view response
         </button>
         <br />

@@ -34,7 +34,7 @@ class DataManagement extends Component {
         </div>
 
         <div className='form-group'>
-          <label htmlFor='uploadDocument'>New Index</label>
+          <label htmlFor='uploadDocument'>Update data</label>
           <textarea
             id='uploadDocument'
             height='100'
