@@ -19,11 +19,11 @@ header h1 {
 }
 
 .history-rows > .entry:hover {
-  height: 220px;
+  height: 240px;
 }
 
 .history-rows > .entry:first-of-type {
-  height: 220px;
+  height: 240px;
 }
 
 .history-rows > div {

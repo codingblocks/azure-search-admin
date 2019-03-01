@@ -15,6 +15,18 @@ class SearchRequest extends SearchEngineRequest {
       queryParams.push('$top=' + window.encodeURI(requestConfig.top))
     }
 
+    if (requestConfig.facet) {
+      queryParams.push('facet=' + window.encodeURI(requestConfig.facet))
+    }
+
+    if (requestConfig.filter) {
+      queryParams.push('$filter=' + window.encodeURI(requestConfig.filter))
+    }
+
+    if (requestConfig.orderBy) {
+      queryParams.push('orderby=' + window.encodeURI(requestConfig.orderBy))
+    }
+
     if (requestConfig.queryType === 'full') {
       queryParams.push('queryType=' + window.encodeURI(requestConfig.queryType))
     }

@@ -62,6 +62,56 @@ class RequestSettings extends Component {
           </small>
         </div>
         <div className='form-group'>
+          <label htmlFor='top'>Facet</label>
+          <input
+            type='text'
+            id='facet'
+            className='form-control'
+            aria-describedby='facetHelp'
+            placeholder='this UI is sadly limited to 1 facet'
+          />
+          <small id='facetHelp' className='form-text text-muted'>
+            Each facet can have meta data associated with it, like counts, date
+            interval, ranges read more
+            <a href='https://docs.microsoft.com/en-us/rest/api/searchservice/search-documents'>
+              here
+            </a>
+          </small>
+        </div>
+        <div className='form-group'>
+          <label htmlFor='top'>Filters</label>
+          <input
+            type='text'
+            id='filter'
+            className='form-control'
+            aria-describedby='filterHelp'
+            placeholder='Filter condition, leave blank for none'
+          />
+          <small id='filterHelp' className='form-text text-muted'>
+            Example: published ge 2019-01-01 or podcastTitle eq 'Coding Blocks'
+            Read more
+            <a href='https://docs.microsoft.com/en-us/azure/search/search-filters'>
+              here
+            </a>
+          </small>
+        </div>
+        <div className='form-group'>
+          <label htmlFor='top'>Order By</label>
+          <input
+            type='text'
+            id='orderBy'
+            className='form-control'
+            aria-describedby='orderByHelp'
+            placeholder='Sort columns, leave blank for relevance'
+          />
+          <small id='orderByHelp' className='form-text text-muted' />
+          There's quite a bit you can do with sorting, read more
+          <a href='https://docs.microsoft.com/en-us/azure/search/query-odata-filter-orderby-syntax'>
+            here
+          </a>
+        </div>
+
+        <div className='form-group'>
           <label htmlFor='top'>Top</label>
           <input
             type='number'
